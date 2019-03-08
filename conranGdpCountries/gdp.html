@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	
+	<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			drawSheetName('gdp', 
+						  'SELECT A,B,C,D,E,F',
+						  gdpRH);
+			drawSheetName('gdp',
+			              'SELECT A,F',
+						  topgdpRH);
+			drawSheetName('meanmilitaryspending',
+						  'SELECT A,G',
+						  averageSpendingResponseHandler);
+			drawSheetName('sharedgdp',
+						  'SELECT A,B,C,D,E,F',
+						  sharedGDPResponseHandler);
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		function gdpRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Spending in Billions ($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_div'));
+			
+			chart.draw(data, options);
+		} //gdpRH
+		</script>
+		
+	
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Home</a></li>
+					<li class="selected"><a href="gdp.html">GDP and Expenditures</a></li>
+					<li><a href="hlthedumil.html">Health & Education VS Military</a></li>
+					<li><a href="percap.html">Per Capita</a></li>
+					<li><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+				
+				<h1>How the Top 11 Nations Spend</h1>
+					<h2>GDP Expenditure by Country, USD (2011-2015)</h2>
+				<div id="gdp_div"
+					style="width:600px; height:400px;"></div>
+				<h5>The overall GDP of each nation by year in descending order. Hover over each column for the specific dollar amount.</h5>
+				<br>
+			
+				<h4>An Assessment of Health, Education, and Military Spending <br> of the Top 11 Nations by GDP (2011-2015)</h2>
+				<p>
+					The priorities of a nation and its role within the international community can be assessed by its
+					spending priorities. This analysis attempts to better understand the top 11 nations by GDP analyzing their health, military, and education expenditures while
+					factoring population and the relative share of GDP.
+				</p>
+				<h3>Data and Methodology</h3>
+				<p>
+				As proposed by Dr. Nima Zahadat of the George Washington University, the analysis requested was to collect the education, military, and health expenditures of the top 10 nations spanning five of the most recent years.
+				Using the World Bank's datasets to drive this analysis, certain shortcomings in the dataset became clear. First, the World Bank does not have health expenditure data for the years 2016 and 2017. Second, government expenditures on education are not well reported, with China making no reports on education spending within the last 15 years analyzed.
+				To mitigate gaps in the data, the years 2011-2015 were selected for completeness. For missing values, the average expenditure on education was imputed from the reported values between 2007 and 2015 for Canada, India, Italy, Japan, Russia, the United Kingdom, and the United States. As China
+				reports no education data, Russia, ranked 11th by GDP, was incorporated to ensure at least 10 countries were assessed for every part of the analysis. The original and computed datasets (to account for % of GDP and per capita) from World Bank are listed below.
+	
+				</p>
+				<h2>World Bank Datasets</h2>
+				<ul>
+					<li>GDP (current US$)</li>
+					<li>Population, total</li>
+					<li>Current health expenditure per capita (current US$)</li>
+					<li>Government expenditure on education, total (% of GDP)</li>
+					<li>Military expenditure (% of GDP)</li>
+					
+				<h2>Computed Datasets (World Bank)</h2>
+				<ul>
+					<li>FIX ME</li>
+					<li>Population, total</li>
+					<li>Current health expenditure per capita (current US$)</li>
+					<li>Government expenditure on education, total (% of GDP)</li>
+					<li>Military expenditure (% of GDP)</li>
+
+					
+				</ul>
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

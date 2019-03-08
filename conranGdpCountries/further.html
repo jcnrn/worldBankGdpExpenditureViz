@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<head>
+	<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			drawSheetName('avgExpVsGdpPerCap', 
+						  'SELECT A,C,D,E',
+						  avgExpPerCapRH);
+			
+			drawSheetName('avgExpVsGdp$', 
+						  'SELECT A,C,D,E',
+						  avgExp$RH);			
+
+			drawSheetName('avgChange', 
+						  'SELECT A,B,C',
+						  avgChangeRH);	
+			
+			drawSheetName('avgPercChange', 
+						  'SELECT A,B,C',
+						  avgPercChangeRH);	
+			
+			drawSheetName('usStacked', 
+			              'SELECT A,G',
+						  usStackedRH);
+						  
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		
+		function avgExpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:3, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('avg_exp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //avgExpPerCapRH
+		
+		
+		function avgExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:3, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('avg_exp_div'));
+			
+			chart.draw(data, options);
+		} //avgExpPerCapRH
+	
+		function avgChangeRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:2, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('avg_change_div'));
+			
+			chart.draw(data, options);
+		} //avgChange
+			
+			
+		function avgPercChangeRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:2, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('avg_perc_change_div'));
+			
+			chart.draw(data, options);
+		} //avgPercChange
+		
+		
+			function usStackedRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:1, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.PieChart(
+						document.getElementById('us_stacked_div'));
+			
+			chart.draw(data, options);
+		} //usStacked
+		
+		
+		
+		
+		
+		
+	</script>
+		
+		
+	
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Main</a></li>
+					<li><a href="aggregate.html">Aggregate</a></li>
+					<li><a href="percapita.html">Per Capita</a></li>
+					<li  class="selected"><a href="further.html">Further Analysis</a></li>
+					<li><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+							<li><a href="https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/edit?usp=sharing">Analysis Spreadsheet</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+								<h1>How the Top 11 Nations Spend</h1>
+				
+				<h2> Further levels of analysis for the <br> Top 11 Nations Ranked by GDP (2011-2015)</h2>
+				
+				<p>Removing GDP from the analysis allows a closer inspection of expenditures by sector, in aggregate and per capita. The overall change of each country between 2011 and 2015 is also reviewed in aggregate and by percent. Finally, the United States' expenditures
+					are considered independently.				</p>
+			
+				
+	<h2>Average Expenditure, Aggregate USD$ (2011-2015)</h2>
+	<div id="avg_exp_div"
+		 style="width:600px; height:400px;"></div>
+			<h5>With a better relation among the data, a better understanding of expenditures within and between nations is realized. In aggregate, the US spends exceeds the spending of all other nations in military, education, and healthcare. Both the United States and China
+			seem to spend a disproportionate amount on healthcare with all other nations seeming to divest similarly into these sectors. Please note China is incorrectly categorized due to missing education data.</h5>
+		 	 	 	
+	<h2>Average Expenditure, Per Capita USD$ (2011-2015)</h2>
+	<div id="avg_exp_per_cap_div"
+		 style="width:600px; height:400px;"></div>		 
+			<h5>Dividing by population, reduces  the United States to second in spending for these three sectors. Canada leads despite its minimal investment in military. The US still spends an exceeding amount on healthcare but is education spending is proportional to other nations. China
+			is missing education data as before.</h5>
+			
+	<h2>Overall Change in Expenditure for Health and Education, Aggregate USD$ (2011-2015)</h2>
+	<div id="avg_change_div"
+		 style="width:600px; height:400px;"></div>		 		 	 
+			<h5>Reviewing the average change in spending for health and education, only the US, China, UK and India saw increases in health spending. For education only the United States and the United Kingdom increased spending. </h5>
+			
+	<h2>Overall Change in Expenditure for Health and Education, Percent (2011-2015)</h2>
+	<div id="avg_perc_change_div"
+		 style="width:600px; height:400px;"></div>		 	 
+			<h5>Using percent change, a better comparison of the data is revealed and health spending is revealed to have a large overall change. The UK, US,and India saw positive spending in both sectors (China does not report education). All other nations experienced
+			largely negative growth in spending.
+			</h5>
+	<h2>United States Expenditures by Sector as a Function of GDP</h2>
+	<div id="us_stacked_div"
+		 style="width:600px; height:400px;"></div>
+			<h5>Finally, as the United States maintains the largest GDP and is the largest aggregate spender, a brief pie chart was created to display how much of American GDP is spent on the Health, Education, and Military sectors. Together, these sectors account for
+			about 25% of American GDP.</h5>
+			 
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

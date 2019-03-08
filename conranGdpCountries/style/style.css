@@ -1,0 +1,266 @@
+html {
+	height: 100%;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	color: #000000;
+}
+
+body {
+	font: normal .78em arial, sans-serif;
+	background: #000000;
+	color: ##2e1160;
+}
+
+
+	h1 {
+	font-family: Georgia, serif;
+	font-size: 32px;
+	letter-spacing: 2.4px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+	}
+	
+	h2{
+	font: normal 175% 'century gothic', arial, sans-serif;
+	color: #111;
+	margin: 0 0 0px 0;
+	padding: 15px 0 5px 0;
+	}
+	
+	h3 {
+	font: normal 150% 'century gothic', helvetica, sans-serif;
+	font-weight:bold;
+	color: #111;
+	margin: 0 0 0px 0;
+	padding: 0px 0 0px 0;
+	}
+	
+	h4 {
+	font: normal 150% 'century gothic', arial, sans-serif;
+	color: #111;
+	margin: 0 5px 0 0;
+	padding:0 0 5px 0;
+	}
+	
+	h5 {
+	
+	}
+	
+	p {
+	font: normal 110% 'h', arial, sans-serif;
+	color: #111;
+	margin: 0 0 15px 0;
+	padding: 15px 0 5px 0;
+	line-height: 1.7em;
+	}
+
+a, a:hover {
+	outline: none;
+	color: #111;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+ul {
+	margin: 2px 0 22px 17px;
+	list-style-type: circle;
+}
+
+ul li {
+	list-style-type: circle;
+	margin: 0 0 6px 0;
+	padding: 0 0 4px 5px;
+}
+
+#main, #header, #logo, #menubar, #site_content, #footer {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#main {
+	width: 910px;
+}
+
+#header {
+	width: 890px;
+}
+
+#logo {
+	width: 890px;
+	position: relative;
+	height: 200px;
+	background: url(../images/handshake.jpg) no-repeat;
+}
+
+#logo_text {
+	position: absolute;
+	top: 0px;
+	left: 30px;
+}
+
+#logo h1, #logo h2 {
+	font-family: Georgia, serif;
+	font-size: 40px;
+	letter-spacing: 2.4px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
+#logo_text h1, #logo_text h1 a, #logo_text h1 a:hover {
+	
+	color: #860000;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+
+.logo_color {
+	color: #2D2D2D;
+}
+
+#logo_text h2 {
+	font-size: 150%;
+	color: #0D0B53;
+	padding: 0px 0 0 80px;
+}
+
+#menubar {
+	width: auto;
+	height: 35px;
+	padding: 8px 0 0 0;
+	margin: -45px 0 0 0;
+	position: relative;
+	z-index: 1;
+	float: left;
+}
+
+ul#menu {
+	float: right;
+	margin: 0;
+}
+
+ul#menu li {
+	float: left;
+	margin: 5px 0 0 0;
+	padding: 0 0 0 6px;
+	list-style: none;
+}
+
+ul#menu li a {
+	letter-spacing: 0em;
+	font: normal 105% helvetica, sans-serif;
+	text-transform: uppercase;
+	display: block;
+	float: left;
+	height: 20px;
+	text-decoration: none;
+	padding: 9px 22px 5px 16px;
+	text-align: center;
+	color: #000;
+	border: 0;
+}
+
+ul#menu li.selected a {
+	height: 25px;
+	color: #860000;
+	padding: 7px 22px 5px 16px;
+}
+
+ul#menu li.selected {
+	margin: 7px 0 0 0;
+	color: #fff;
+	background: #f8f8f8;
+}
+
+ul#menu li a:hover {
+	color: #888;
+}
+
+#site_content {
+	width: 890px;
+	overflow: hidden;
+	background: #f8f8f8;
+}
+
+.sidebar {
+	float: right;
+	width: 150px;
+	padding: 20px 25px 5px 0px;
+}
+
+.sidebar ul {
+	width: 150px;
+	padding: 4px 0 0 0;
+	margin: 4px 0 30px 0;
+}
+
+.sidebar li {
+	list-style: circle;
+	padding: 0 0 7px 0;
+}
+
+.sidebar li a, .sidebar li a:hover {
+	padding: 0 0 0 40px;
+	display: block;
+}
+
+.sidebar li a.selected {
+	color: #444;
+	text-decoration: none;
+}
+
+#content {
+	text-align: left;
+	width: 600px;
+	float: left;
+	padding: 20px 0 15px 30px;
+}
+
+#content ul {
+	margin: 2px 0 22px 0;
+}
+
+#content ul li {
+	list-style-type: square;
+	margin: 0 0 6px 0;
+	padding: 0 0 4px 25px;
+	line-height: 1.5em;
+}
+
+#footer {
+	width: 890px;
+	height: 33px;
+	padding: 20px 0 4px 0;
+	text-align: center;
+	background: #000;
+	color: #fff;
+	border-top: 1px solid #fff;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	font-size: 80%;
+}
+
+#footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #fff;
+	text-decoration: underline;
+}

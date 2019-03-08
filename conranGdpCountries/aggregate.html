@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	
+		<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			drawSheetName('gdp', 
+						  'SELECT A,B,C,D,E,F',
+						  gdpRH);
+			drawSheetName('healthExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  healthExp$RH);
+			drawSheetName('milExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  milExp$RH);
+			drawSheetName('eduExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  eduExp$RH);
+			drawSheetName('avgExpVsGdp$', 
+						  'SELECT A,B,C,D,E',
+						  GdpVsExp$RH);
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		function gdpRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_div'));
+			
+			chart.draw(data, options);
+		} //gdpRH
+		
+		function healthExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('health_exp_div'));
+			
+			chart.draw(data, options);
+		} //healthExp$RH
+		
+		function milExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('mil_exp_div'));
+			
+			chart.draw(data, options);
+		} //milExp$RH
+	
+		function eduExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('edu_exp_div'));
+			
+			chart.draw(data, options);
+		} //eduExp$RH
+		
+		
+		function GdpVsExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:4, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_vs_exp_div'));
+			
+			chart.draw(data, options);
+		} //GdpVsExp$RH
+		
+
+		
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Main</a></li>
+					<li  class="selected"><a href="aggregate.html">Aggregate</a></li>
+					<li><a href="percapita.html">Per Capita</a></li>
+					<li><a href="further.html">Further Analysis</a></li>
+					<li><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+							<li><a href="https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/edit?usp=sharing">Analysis Spreadsheet</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+				<h1>How the Top 11 Nations Spend</h1>
+				
+				<h2> Aggregate GDP and Expenditures of the <br> Top 11 Nations Ranked by GDP (2011-2015)</h2>
+				
+				<p>Reviewing the aggregate GDP data, there seems to be a nonlinear trend in GDP by country. Assessing each sector individually alters the rank order of a few nations and also further separates China and the United from all other nations.</p>
+				<br>
+				<h3>GDP by Country, USD (2011-2015)</h3>
+					<div id="gdp_div"
+					style="width:600px; height:400px;"></div>
+				<h5>An overview of the top 11 countries by GDP by year. Note that United States and China seem to have positive growth, Japan negative and the other nations lack an observable trend. Please hover over any column to gain the individual value.</h5>
+				
+				<p>Reviewing the aggregate GDP data, there seems to be a nonlinear trend in GDP by country. Assessing each sector individually alters the rank order of a few nations and also further separates China and the United from all other nations.</p>
+				
+				<h2>Aggregate Health Expenditure by Country, USD (2011-2015)</h2>
+				<div id="health_exp_div"
+						style="width:600px; height:400px;"></div>
+				<h5>The United States exceedingly spends more on healthcare over other nations. While spending cannot infer the quality of care, a seemingly positive trend suggests the amount spent on health will continue to increase. </h5>
+
+				
+				<h2>Aggregate Military Expenditure by Country, USD (2011-2015)</h2>
+				<div id="mil_exp_div"
+						style="width:600px; height:400px;"></div>		 
+				<h5>As expected the United States spends the most in aggregate on defense. Between 2011-2015, however the amount of spending has slowly decreased for the US. China who lags in second, displays a sharp increase in military expenditure. Russia, another military power lies in third, but not far off from NATO countries.</h5>
+				
+				<h2>Aggregate Government Education Expenditure by Country, USD (2011-2015)</h2>
+				<div id="edu_exp_div"
+						style="width:600px; height:400px;"></div>		 
+				<h5>World Bank does not provide an aggregate expenditure for education, but does capture the government's spending on education. For this dataset, missing values were imputed by the average of the remaining data points by country. China, who does not provide any 
+				data on education spending, is reflected as having zero spending on this sector. Reviewing the expenditures, the United States surprisingly spends the most on education of any country by far. Further research could better understand if this relates to higher education and research
+				or ineffeciencies in early education. </h5>
+		 
+				<h2>Average GDP versus Health, Military, and Education Expenditure, Aggregate USD$ (2011-2015) </h2>
+				<div id="gdp_vs_exp_div"
+						style="width:600px; height:400px;"></div>	
+				<h5>While the orders of magnitude still complicate analysis, there is still a delineation between Western developed nations and still developing nations. Complications in sorting Google Charts and the lack of Chinese education data may have confounded the rank order for
+				this graphic.</h5>
+					
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

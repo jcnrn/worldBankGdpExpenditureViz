@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li class="selected"><a href="index.html">Main</a></li>
+					<li><a href="aggregate.html">Aggregate</a></li>
+					<li><a href="percapita.html">Per Capita</a></li>
+					<li><a href="further.html">Further Analysis</a></li>
+					<li><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+							<li><a href="https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/edit?usp=sharing">Analysis Spreadsheet</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+				<h1>How the Top 11 Nations Spend</h1>
+			
+				<h2>An Assessment of Health, Education, and Military Spending of the Top 11 Nations by GDP (2011-2015)</h2>
+				<p>
+					The priorities of a nation and its role within the international community can be assessed by how it allocates its spending. This analysis attempts to better understand the top 11 nations by GDP through their expenditures on the health, military, and 
+					education sectors. These values are examined both in aggregate and per capita.
+				</p>
+				<h4>Data and Methodology</h4>
+				<p>
+				As proposed by Dr. Nima Zahadat of the George Washington University, the analysis proposed was to collect the GDP and education, military, and health expenditures of the top 10 nations spanning five of the recent years.
+				Using the World Bank's datasets to drive this analysis, certain shortcomings in the dataset became clear. First, the World Bank does not have health expenditure data for the years 2016 and 2017. Second, government expenditures on education are not well reported, with China making no reports on education spending within the last 15 years analyzed.
+				To mitigate gaps in the data, the years 2011-2015 were selected for completeness. For missing values, the average expenditure on education was imputed by the average remaining values by year for for Canada, India, Italy, Japan, Russia, the United Kingdom, and the United States. As China
+				reports no education data, Russia, ranked 11th by GDP, was also incorporated to ensure at least 10 countries were assessed for every part of the analysis. The original and computed datasets (to account for % of GDP and per capita) from World Bank are listed below.
+	
+				</p>
+				<h2>World Bank Datasets</h2>
+				<ul>
+					<li>GDP (current US$)</li>
+					<li>Population, total</li>
+					<li>Current health expenditure per capita (current US$)</li>
+					<li>Government expenditure on education, total (% of GDP)</li>
+					<li>Military expenditure (% of GDP)</li>
+					
+				<h2>Computed Datasets</h2>
+				<ul>
+					<li>Health Expenditure, Aggregate USD$</li>
+					<li>Military Expenditure, Aggregate USD$</li>
+					<li>Education Expenditure, Aggregate USD$</li>
+					<li>Average Aggregate Expenditure vs GDP USD$</li>
+					<li>GDP per Capita USD$</li>
+					<li>Military Expenditure per Capita USD$</li>
+					<li>Education Expenditure per Capita USD$</li>
+					<li>Average Expenditure per Capita vs GDP USD$</li>
+					<li>Average Aggregate Change</li>
+					<li>Average Percent Change</li>
+					<li>US Expenditures as a Portion of GDP</li>
+
+					
+				</ul>
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

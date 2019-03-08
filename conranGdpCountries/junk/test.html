@@ -1,0 +1,267 @@
+<!doctype html>
+<!-- military.html -->
+<html>
+<head>
+	<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			drawSheetName('gdp', 
+						  'SELECT A,B,C,D,E,F',
+						  gdpRH);
+			drawSheetName('healthExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  healthExp$RH);
+			drawSheetName('milExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  milExp$RH);
+			drawSheetName('eduExp$', 
+						  'SELECT A,B,C,D,E,F',
+						  eduExp$RH);
+			drawSheetName('avgExpVsGdp$', 
+						  'SELECT A,B,C,D,E',
+						  GdpVsExp$RH);
+			
+			
+			
+			drawSheetName('gdp', 
+			              'SELECT A,F',
+						  topgdpRH);
+			drawSheetName('meanmilitaryspending',
+						  'SELECT A,G',
+						  averageSpendingResponseHandler);
+			drawSheetName('sharedgdp',
+						  'SELECT A,B,C,D,E,F',
+						  sharedGDPResponseHandler);
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		function gdpRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_div'));
+			
+			chart.draw(data, options);
+		} //gdpRH
+		
+		function healthExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('health_exp_div'));
+			
+			chart.draw(data, options);
+		} //healthExp$RH
+		
+		function milExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('mil_exp_div'));
+			
+			chart.draw(data, options);
+		} //milExp$RH
+	
+		function eduExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('edu_exp_div'));
+			
+			chart.draw(data, options);
+		} //eduExp$RH
+		
+		
+		function GdpVsExp$RH(response) {
+			var data = response.getDataTable();
+			data.sort({column:4, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Billions, Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_vs_exp_div'));
+			
+			chart.draw(data, options);
+		} //GdpVsExp$RH
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		function topgdpRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:1, desc:true});
+			
+			var options = {
+						height: 400,
+						colorAxis: {colors: ['#e7711c', '#4374e0']}, //orange to blue
+						title: 'Top 10 Military Spenders Billions $ (2015)'
+			};
+			
+			var chart = new google.visualization.GeoChart(
+						document.getElementById('top_military_spending_div'));
+			
+			chart.draw(data, options);
+		} //topgdpRH
+		
+		function averageSpendingResponseHandler(response) {
+			var data = response.getDataTable();
+			data.sort({column:1, desc:true});
+			
+			var options = {
+						height: 400,
+						legend: 'none',
+						bars: 'horizontal',
+						vAxis: {title: 'Spending in Billions ($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			/* using data directly
+			var formatter = new google.visualization.NumberFormat(
+						{fractionDigits: 2, prefix: '$'});
+			formatter.format(data, 1); //apply the formatting to column 1
+			*/
+			
+			/* using a view */
+			var view = new google.visualization.DataView(data);
+			
+			view.setColumns([0,1, {
+					calc: function(dt, row) {
+			return Math.floor(dt.getFormattedValue(row,1)) + 'B';
+					},
+					sourceColumn: 1,
+					type: 'string',
+					role: 'annotation'					
+			}]);
+			
+			var chart = new google.visualization.BarChart(
+					document.getElementById('avg_spending_div'));
+			
+			chart.draw(view, options); //change data to view
+			
+		} //averageSpendingResponseHandler
+		
+		function sharedGDPResponseHandler(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			
+			options = {height: 400};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('shared_gdp_div'));
+			chart.draw(data, options);
+		} //sharedGDPResponseHandler
+		
+	</script>
+</head>
+<body>
+	<h2>GDP Expenditure by Country, USD (2011-2015)</h2>
+	<div id="gdp_div"
+		 style="width:900px; height:500px;"></div>
+		 
+	<h2>Health Expenditure by Country, USD (2011-2015)</h2>
+	<div id="health_exp_div"
+		 style="width:900px; height:500px;"></div>
+		 
+	<h2>Military Expenditure by Country, USD (2011-2015)</h2>
+	<div id="mil_exp_div"
+		 style="width:900px; height:500px;"></div>		 
+		 
+	<h2>Government Education Expenditure by Country, USD (2011-2015)</h2>
+	<div id="edu_exp_div"
+		 style="width:900px; height:500px;"></div>		 
+		 
+		 
+	<h2>tessst</h2>
+	<div id="gdp_vs_exp_div"
+		 style="width:900px; height:500px;"></div>		 
+		 	 
+		 
+		 
+		 
+		 
+		 
+		 
+	<h2>Military Analysis of top 10 G20 Countries</h2>
+	<div id="gdp_div"
+		 style="width:900px; height:500px;"></div>
+		 
+	<h2>Military Analysis of top 10 G20 Countries</h2>
+	<div id="gdp_div"
+		 style="width:900px; height:500px;"></div>
+	
+	<h2>Top 10 Military Spending in 2015</h2>
+	<div id="top_military_spending_div"
+	     style="width:900px; height:500px;"></div>
+		 
+	<h2>Average Military Spending by Country (2011-2015)</h2>
+	<div id="avg_spending_div"
+	     style="width: 900px; height: 500px;"></div>
+		 
+	<h2>Military Expenditure by Country as a % of GDP (2011-2015)</h2>
+	<div id="shared_gdp_div"
+	     style="width:900px; height:500px;"></div>
+</body>
+</html>

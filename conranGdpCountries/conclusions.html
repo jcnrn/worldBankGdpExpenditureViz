@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	
+		<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			
+			drawSheetName('gdpPerCap', 
+			              'SELECT A,F',
+						  gdpPerCapRH);
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		
+		function gdpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:1, desc:true});
+			
+			var options = {
+						height: 400,
+						colorAxis: {colors: ['#4374e0', '#B22222']}, //orange to blue
+						title: ''
+			};
+			
+			var chart = new google.visualization.GeoChart(
+						document.getElementById('gdp_per_cap_map_div'));
+			
+			chart.draw(data, options);
+		} //gdpPerCapRH
+	
+		
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Main</a></li>
+					<li><a href="aggregate.html">Aggregate</a></li>
+					<li><a href="percapita.html">Per Capita</a></li>
+					<li><a href="further.html">Further Analysis</a></li>
+					<li class="selected"><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+				<li><a href="https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/edit?usp=sharing">Analysis Spreadsheet</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+				<h1>How the Top 11 Nations Spend</h1>
+				
+				
+				<h2>Top 11 Nations by GDP Per Capita (2011-2015)</h2>
+				<div id="gdp_per_cap_map_div"
+				style="width:600px; height:400px;"></div>
+			<h5>A brief geographical view of where nations with the top GDP are located. Red depicts the higher end of GDP per Capit with blue displaying the lower portion of the top 11 countries.
+				<h2>Concluding Remarks</h2>
+				<p>
+				Reviewing the top 11 countries by GDP in health, education, and military expenditures both by aggregate and per capita paints a narrative between developed Western nations and late-developing countries including China and India, and to a lesser extent Russia.
+				Overall, the United States remains the top nation both by aggregate and per capita. While its defense and education spending are justified and somewhat proportional to other developed nations, its healthcare spending is a magnitude above any other nation which signals
+				either that health is a priority or this sector is not efficient. China is also revealed to have a reduced status when its GDP and spending are considered on a per capita basis. This signals that while the aggregate growth might suggest a rising power, the
+				the total population has yet to be leveraged to further improve and benefit from this growth.
+				
+				</p>
+				<h4>Limitations</h4>
+				<p>
+					This mode of analysis, using HTML, CSS, and Google API, is a new endeavor for Conran Economics. As such, there is much room to improve this level of analysis. Beyond this limitation, the five year span and focus on the top 10/11 nations provides
+					a limited scope to understand trends and relationships between GDP and spending. Finally, missing data in education and years 2016 and 2017 reduce the overall validy of this report.
+					
+				</p>
+				
+				<h4>Further Research</h4>
+				<p>
+					To improve the capabilities of Conran Economics in the future, the analysis team will continue to improve its understanding of web development, visualization, and API toolkits. Further research into available datasets, and how best to understand
+					and present economic information will also be considered. Please email us Joseph with any further suggestions you might have.
+					
+				</p>
+				
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conran Economic Assessment Main</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript"
+	        src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		//load the google charts
+		google.charts.load('current',{'packages':['corechart']});
+		
+		//load the Callback function that runs when page loads
+		google.charts.setOnLoadCallback(drawAllSheets);
+		
+		function drawAllSheets() {
+			drawSheetName('gdpPerCap', 
+						  'SELECT A,B,C,D,E,F',
+						  gdpPerCapRH);
+			drawSheetName('healthExpPerCap', 
+						  'SELECT A,B,C,D,E,F',
+						  healthExpPerCapRH);
+			drawSheetName('milExpPerCap', 
+						  'SELECT A,B,C,D,E,F',
+						  milExpPerCapRH);
+			drawSheetName('eduExpPerCap', 
+						  'SELECT A,B,C,D,E,F',
+						  eduExpPerCapRH);
+			drawSheetName('avgExpVsGdpPerCap', 
+						  'SELECT A,B,C,D,E',
+						  avgExpVsGdpPerCapRH);
+			
+		} //drawAllSheets
+		
+		function drawSheetName(sheetName, query, responseHandler) {
+			var queryString = encodeURIComponent(query);
+			var query = new google.visualization.Query(
+			
+				'https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/gviz/tq?sheet=' +
+							sheetName + '&headers=1&tq=' + queryString);
+			query.send(responseHandler);
+		} //drawSheetName
+		
+		function gdpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //gdpPerCapRH
+		
+		function healthExpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('health_exp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //healthExpPerCapRH
+		
+		function milExpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('mil_exp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //milExpPerCapRH
+	
+		function eduExpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:5, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('edu_exp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //eduExpPerCapRH
+		
+		
+		function avgExpVsGdpPerCapRH(response) {
+			var data = response.getDataTable();
+			data.sort({column:4, desc:true});
+			var options = {
+						height: 400,
+						vAxis: {title: 'Current USD($)'},
+						hAxis: {title: 'Country'}
+			};
+			
+			var chart = new google.visualization.ColumnChart(
+						document.getElementById('gdp_vs_exp_per_cap_div'));
+			
+			chart.draw(data, options);
+		} //avgExpVsGdpPerCapRH
+		
+		
+		
+		
+		
+		</script>
+		
+		
+	
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>Conran <span class="logo_color">Economics</span></h1>
+					<h2>Policy Consulting</h2>
+				</div><!-- logo_text -->
+				
+				
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Main</a></li>
+					<li><a href="aggregate.html">Aggregate</a></li>
+					<li  class="selected"><a href="percapita.html">Per Capita</a></li>
+					<li><a href="further.html">Further Analysis</a></li>
+					<li><a href="conclusions.html">Conclusions</a></li>
+				</ul>
+			</div><!-- menubar -->
+			
+			
+		</div><!-- header -->
+		<div id="site_content">
+			<div class="sidebar">
+			<!-- insert sidebar items here -->
+			<h3>Researcher:</h3>
+			<h4>Joseph Conran</h4>
+			<h5><a href="mailto:conran@adnumerant.com">conran@adnumerant.com</a></h5>
+			<br><br>
+			
+			<h3>References</h3>
+			<ul>
+				<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+				<li><a href="http://www.nimazahadat.com/">Nima Zahadat, PhD</a></li>
+				<li><a href="https://www.gwu.edu/">The George Washington University</a></li>				
+				<li><a href="https://www.w3schools.com/">W3 Schools</a></li>
+							<li><a href="https://docs.google.com/spreadsheets/d/1vQFR676ZEdF7l4IeIf9_2_xIQvZxQqB3NQ20c-Gd9-8/edit?usp=sharing">Analysis Spreadsheet</a></li>
+			</ul>
+			</div><!-- sidebar -->
+			<div id="content">
+				<!-- insert page content here -->
+								<h1>How the Top 11 Nations Spend</h1>
+				
+				<h2> Per Capita GDP and Expenditures of the <br> Top 11 Nations Ranked by GDP (2011-2015)</h2>
+				
+				<p>Analyzing the per capita GDP and expenditures, the United States falls more closely with other developed nations. Expenditures are also better understood as a function of the population. Please note USD$ values are no longer in billions.</p>
+				<br>
+				<h2>GDP per Capita, USD (2011-2015)</h2>
+	<div id="gdp_per_cap_div"
+		 style="width:600px; height:400px;"></div>
+		 <h5>Dividing the GDP by population brings the United States closer in line with other developed nations. Using the same reference, China is now reduced to tenth of the top 11 nations. Using GDP per capita as a parallel for median wage, Western developed nations
+		 have a household income of around $40-50,000, Russia and Brazil around $10-15,000, China at$7,000, and India around $50.</h5>
+	
+	<h2>Health Expenditure per Capita, USD (2011-2015)</h2>
+	
+	<div id="health_exp_per_cap_div"
+		 style="width:600px; height:400px;"></div>
+		<h5>Reviewing health expenditure per capita, the United States is still the larges spender by about $2,000 per capita which could suggest some inefficiency or a higher quality of care over other developed nations. China who ranked higher in aggregate, now has one of the lowest expenditures in health.</h5> 
+	
+	<h2>Military Expenditure by Country, USD$ (2011-2015)</h2>
+	<div id="mil_exp_per_cap_div"
+		 style="width:600px; height:400px;"></div>		 
+	<h5>The United States almost doubles the other nations in per capita military spending. Here, the Russian Federation, another military power, overtakes Italy and Brazil. China who has begun to improve its role on the internation stage, has yet to match 
+	the spending of other governments per person. </h5>	
+		
+	<h2>Government Education Expenditure by Country, USD (2011-2015)</h2>
+	<div id="edu_exp_per_cap_div"
+		 style="width:600px; height:400px;"></div>		 
+		 <h5>A very interesting chart, Canada overtakes the United States as the lead spender in education per capita. Please note China does not provide education data and is listed last.</h5> 
+		 
+	<h2>Average GDP versus Health, Military, and Education Expenditure, per Capita USD$ (2011-2015) </h2>
+	<div id="gdp_vs_exp_per_cap_div"
+		 style="width:600px; height:400px;"></div>		 
+		 <h5></h5> 
+			 
+			</div><!-- content -->
+		</div><!-- site_Content -->
+		<div id="content_footer">
+			<div id="footer">
+			HTML and CSS Code Adapted by Joseph Conran from Dr. Nima Zahadat <br>
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>
